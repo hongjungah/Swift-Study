@@ -720,9 +720,64 @@ if let integerValue = possibleIntegerValue {
 ```
 						
 ### Fallthrough						
-Swifth는 switch 문에서 기본적으로 각 경우 안에 있는 코드가 끝나면 다음 경우로 넘어가지 않음.
+Swift는 switch 문에서 기본적으로 각 경우 안에 있는 코드가 끝나면 다음 경우로 넘어가지 않음.
+C언어에서는 break를 쓰지 않으면 Switch 문의 각 경우가 다음으로 넘어가는데 Swift도 각 경우 안의 코드가 종료된 후에 다음 항목으로 넘어갈려면 `fallthrough`키워드를 사용함.
+```swift
+let integerToDescribe = 5
+var description = "The number \(integerToDescribe) is"
+switch integerToDescribe {
+case 2, 3, 5, 7, 11, 13, 17, 19:
+    description += " a prime number, and also"
+    fallthrough
+default:
+    description += " an integer."
+}
+print(description)
+// prints "The number 5 is a prime number, and also an integer."
+```
 
+## 함수(Functions)
+함수는 특정 작업을 수행하기 위한 독립적인 코드 집함임. 
+함수에 식별할 수 있도록 명명하며, 작업이 필요할 때 함수의 이름을 호출하여 사용함.  
+Swift의 모든 함수는 타입을 가지며 함수의 인자 타입과 반환 타입을 고려해야 함. Swift에 다른 타입과 마찬가지로 함수에서 다른 함수로 인자를 넘기고 함수에서 함수로 인자를 반환받는 것이 쉬움.  
+함수는 캡슐화를 위해 중첩된 함수 범위 내에서 작성할 수 있음.
 
-#### 참고
+### 함수 정의와 호출(Defining and Calling Functions)
+함수를 정의할 때, 함수에 입력되는 인자 값에 이름을 정할 수 있으며, 출력 시 값의 타입 정함.  
+모든 함수는 함수 이름을 가지며, 이는 어떤 작업을 하는지에 대한 설명임. 함수를 사용하기 위해 이름과 함수 인자의 타입과 일치하는 값을 넘기도록 호출함. 함수의 입력값은 함수의 인자 목록에 순서와 항상 일치함.
+```swift
+func sayHello(personName: String) -> String {
+    let greeting = "Hello, " + personName + "!"
+    return greeting
+}
+print(sayHello("Anna"))
+// prints "Hello again, Anna!"
+```
+`func` 키워드를 앞에 사용하며, 함수의 반환  타입과 반환 방향 ->를 나타내고 그 뒤에 반환 타입의 이름을 사용함.
+
+### 다중 값을 반환하는 함수(Functions with Multiple Return Values)
+함수에 반환 타입을 튜플 값을 사용할 수 있으며 하나의 집합으로 된 다중 값을 반환함.  
+```swift
+func minMax(array: [Int]) -> (min: Int, max: Int) {
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+
+let bounds = minMax([8, -6, 2, 109, 3, 71])
+print("min is \(bounds.min) and max is \(bounds.max)")
+// prints "min is -6 and max is 10
+```
+
+  
+---
+### 참고 
 [잉여개발자 블로그](http://minsone.github.io/mac/ios/swift-the-basic-summary/)   
 [iOS Developer Library - Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
