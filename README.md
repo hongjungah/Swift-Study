@@ -1,12 +1,13 @@
 # 스위프트(Swift)
 2014년 6월 2일 애플이 세계개발자대회(WWDC 2014)에서 C언어 그리고 Objective-C 언어의 좋은 점들을 취합한 것을 기반으로 C언어 호환성에 대한 제약없이 iOS와 OS X 앱을 개발하기 위한 언어입니다.						
-애플 플랫폼 개발자들이 주로 이용해온 프로그래밍 언어인 "Object-C"를 대체할 것으로 예상된다.												
-
+애플 플랫폼 개발자들이 주로 이용해온 프로그래밍 언어인 "Object-C"를 대체할 것으로 예상된다.  
+ 
 ## Swift를 사용하면서 알아둘 사항						
 * 다른 언어들과 유사하게 주석은 한줄 // comment, 블록 /* comment */를 사용합니다
 * 명령문 마지막에 ;을 생략이 가능합니다. (JavaScript와 유사)
 * if문 같이 조건문을 사용 할때 ()[괄호]가 생략이 가능합니다.
-* 같은 모듈 내에서는 import를 사용하지 않아도 사용할 수 있습니다.												
+* 같은 모듈 내에서는 import를 사용하지 않아도 사용할 수 있습니다.  
+
 
 ## Swift 타입						
 * 정수형 - int						
@@ -17,7 +18,7 @@
 * 값의 묶음 타입 - Tuple						
 * 선택형 타입						
 
-	
+
 ## 상수와 변수(Constants and Variables)						
 상수 값은 한번 설정된 후로는 변경할 수 없으나, 변수는 이후에도 변경될 수 있음.
 상수와 변수의 이름을 지정하기 위해서 유니코드를 포함한 어떤 문자든지 사용할 수 있음.						
@@ -110,7 +111,7 @@ print("The Status code is \(http200Status.statusCode)")
 ## 옵셔널(Optionals)						
 옵셔널은 값이 없을 수도 있는 상황에 사용됨.						
 값이 있다면 상관없지만 값이 없다면 nil을 가짐.		
-```swift
+```swift	
 let str = "Hello, playground"						
 let convertedStr = Int(str)						
 print("\(convertedStr)")						
@@ -131,7 +132,7 @@ var surveyAnswer: String?
 
 
 ## If 조건문과 언래핑(If Statements and Forced Unwrapping)	
-if 조건문에서 옵셔널이 값을 가지고 있는지 판단하기 위해 nil과 비교할 수 있음.						
+if 조건문에서 옵셔널이 값을 가지고 있는지 판단하기 위해 nil과 비교할 수 있음.	
 옵셔널이 값을 가지고 있다면 nil과 같지 않음.	
 ```swift						
 if convertedNumber != nil {						
@@ -221,6 +222,7 @@ for i in 0..<count {
 // Person 4 is called Jack						
 ```
 
+
 ## 컬렉션 타입(Collection Types)						
 Swift는 두 가지 컬렉션 타입 Array와 Dictionary를 제공						
 Array는 같은 타입의 값을 순서대로 저장. Dictionary는 같은 타입의 값을 순서 상관없이 저장하며 						
@@ -235,47 +237,61 @@ Swift의 Array 타입은 Array<SomeType>으로 작성, SomeType은 배열에 저
 ```swift
 var shoppingList: [String] = ["Eggs", "Milk"]						
 ```
-배열의 개수를 확인하는 읽기 전용 count 속성						
+배열의 개수를 확인하는 읽기 전용 count 속성	
+```swift					
 print("The shopping list contains \(shoppingList.count) items.")						
-// prints "The shopping list contains 2 items."						
+// prints "The shopping list contains 2 items."					
+```
 						
-count 속성을 이용하지 않고 isEmpty 속성을 통해 빠르게 배열이 비었는지 확인이 가능						
+count 속성을 이용하지 않고 isEmpty 속성을 통해 빠르게 배열이 비었는지 확인이 가능
+```swift						
 if shoppingList.isEmpty {						
     print("The shopping list is empty.")						
 } else {						
     print("The shopping list is not empty.")						
 }						
 // prints "The shopping list is not empty."						
-						
-배열에 append 메소드를 통해 배열 끝에 새로운 값을 추가할 수 있음.						
+```						
+배열에 append 메소드를 통해 배열 끝에 새로운 값을 추가할 수 있음.			
+```swift				
 shoppingList.append("Flour")						
-// shoppingList now contains 3 items, and someone is making pancakes						
+// shoppingList now contains 3 items, and someone is making pancakes	
+```					
 						
-배열에 인덱스로 접근하여 얻을 수 있음. 또한, 인덱스로 접근하여 값을 변경할 수 있음.						
+배열에 인덱스로 접근하여 얻을 수 있음. 또한, 인덱스로 접근하여 값을 변경할 수 있음.
+```swift							
 var firstItem = shoppingList[0]						
 // firstItem is equal to "Eggs"						
 						
 shoppingList[0] = "Six eggs"						
-// the first item in the list is now equal to "Six eggs" rather than "Eggs"						
+// the first item in the list is now equal to "Six eggs" rather than "Eggs"	
+```					
 						
-배열에 인덱스 범위를 통해 접근하여 값을 변경하거나 배열을 대체함.						
+배열에 인덱스 범위를 통해 접근하여 값을 변경하거나 배열을 대체함.			
+```swift			
 shoppingList[4...6] = ["Bananas", "Apples"]						
 // shoppingList now contains 6 items						
-// replace "Chocolate Spread", "Cheese" and "Butter" to "Bananas" and "Apples"						
+// replace "Chocolate Spread", "Cheese" and "Butter" to "Bananas" and "Apples"
+```						
 						
-배열의 insert(atIndex:) 메소드를 호출하여 특정 인덱스에 삽입할 수 있음.						
+배열의 insert(atIndex:) 메소드를 호출하여 특정 인덱스에 삽입할 수 있음.		
+```swift				
 shoppingList.insert("Maple Syrup", atIndex: 0)						
 // shoppingList now contains 7 items						
-// "Maple Syrup" is now the first item in the list						
+// "Maple Syrup" is now the first item in the list					
+```	
 						
-removeAtIndex 메소드를 호출하여 특정 인덱스의 값을 제거할 수 있음.						
+removeAtIndex 메소드를 호출하여 특정 인덱스의 값을 제거할 수 있음.		
+```swift				
 let mapleSyrup = shoppingList.removeAtIndex(0)						
 // the item that was at index 0 has just been removed						
 // shoppingList now contains 6 items, and no Maple Syrup						
-// the mapleSyrup constant is now equal to the removed "Maple Syrup" string						
+// the mapleSyrup constant is now equal to the removed "Maple Syrup" string
+```						
 						
 각 아이템에 정수 인덱스와 그 값이 필요하다면 enumerate 전역 함수를 사용함.						
-enumerate 함수는 배열에 각 아이템의 인덱스와 값으로 구성된 튜플을 반환함.						
+enumerate 함수는 배열에 각 아이템의 인덱스와 값으로 구성된 튜플을 반환함.	
+```swift					
 for (index, value) in shoppingList.enumerate() {						
     print("Item \(index + 1): \(value)")						
 }						
@@ -284,79 +300,103 @@ for (index, value) in shoppingList.enumerate() {
 // Item 3: Flour						
 // Item 4: Baking Powder						
 // Item 5: Bananas						
+```
 						
-초기화 문법을 사용하여 특정 타입의 빈 배열을 만듬.						
+초기화 문법을 사용하여 특정 타입의 빈 배열을 만듬.					
+```swift	
 var someInts = [Int]()						
 print("someInts is of type [Int] with \(someInts.count) items.")						
-// prints "someInts is of type [Int] with 0 items."						
+// prints "someInts is of type [Int] with 0 items."					
+```	
+
 						
-   • 딕셔너리(Dictionaries)						
-딕셔너리는 같은 타입의 여러 값을 저장하고 있는 컨테이너.						
-각각의 값은 유일한 식별자로서 딕셔너리 안에 값과 연관됨.						
-딕셔너리를 사용할 때는 식별자를 기반으로 값을 찾을 때임.						
-딕셔너리 표현법으로 딕셔너리를 초기화할 수 있으며 배열 표현법과 유사한 형태임.						
-각각의 키와 값으로 쌍을 이루어 콤마로 구분되며 중괄호로 감싸진 형태.						
-var airports: [String: String] = ["TYO": "Tokyo", "DUB": "Dublin"]						
+### 딕셔너리(Dictionaries)						
+딕셔너리는 같은 타입의 여러 값을 저장하고 있는 컨테이너.				
+각각의 값은 유일한 식별자로서 딕셔너리 안에 값과 연관됨.				
+딕셔너리를 사용할 때는 식별자를 기반으로 값을 찾을 때임.				
+딕셔너리 표현법으로 딕셔너리를 초기화할 수 있으며 배열 표현법과 유사한 형태임.	
+각각의 키와 값으로 쌍을 이루어 콤마로 구분되며 중괄호로 감싸진 형태.		
+```swift
+var airports: [String: String] = ["TYO": "Tokyo", "DUB": "Dublin"]		
+```				
 						
-딕셔너리에서 아이템 개수를 찾을 때 읽기 전용 count 속성을 통해 확인할 수 있음.						
+딕셔너리에서 아이템 개수를 찾을 때 읽기 전용 count 속성을 통해 확인할 수 있음.	
+```swift					
 print("The airports dictionary contains \(airports.count) items.")						
-// prints "The airports dictionary contains 2 items."						
+// prints "The airports dictionary contains 2 items."				
+```		
 						
-isEmpty 속성을 통해 빈 딕셔너리인지 확인 가능.						
+isEmpty 속성을 통해 빈 딕셔너리인지 확인 가능.	
+```swift		
 if airports.isEmpty {						
     print("The airports dictionary is empty.")						
 } else {						
     print("The airports dictionary is not empty.")						
 }						
-// prints "The airports dictionary is not empty."						
+// prints "The airports dictionary is not empty."					
+```
 						
-서브스크립트 문법을 통해 딕셔너리에 새로운 아이템을 추가 가능.						
+서브스크립트 문법을 통해 딕셔너리에 새로운 아이템을 추가 가능.			
+```swift			
 airports["LHR"] = "London"
-// the airports dictionary now contains 3 items						
+// the airports dictionary now contains 3 items					
+```	
 						
-서브스크립트 문법을 사용하여 특정 키에 연관된 값을 변경할 수 있음.						
+서브스크립트 문법을 사용하여 특정 키에 연관된 값을 변경할 수 있음.		
+```swift			
 airports["LHR"] = "London Heathrow"						
-// the value for "LHR" has been changed to "London Heathrow"						
+// the value for "LHR" has been changed to "London Heathrow"		
+```				
 						
 서브스크립트 문법 대신하여 딕셔너리의 updateValue(forKey:) 메소드를 사용하여 값 변경 가능.						
-updateValue(forKey:) 메소드는 옵셔널 값을 반환하므로 값이 있는지 확인해야 함.						
+updateValue(forKey:) 메소드는 옵셔널 값을 반환하므로 값이 있는지 확인해야 함.	
+```swift					
 if let oldValue = airports.updateValue("Dublin International", forKey: "DUB") {						
     print("The old value for DUB was \(oldValue).")						
 }						
-// prints "The old value for DUB was Dublin."						
+// prints "The old value for DUB was Dublin."					
+```	
 						
-서브스크립트 문법을 통해 값을 확인할 수 있는데, 이때 값이 없다면 nil을 반환함.						
+서브스크립트 문법을 통해 값을 확인할 수 있는데, 이때 값이 없다면 nil을 반환함.	
+```swift					
 if let airportName = airports["DUB"] {						
     print("The name of the airport is \(airportName).")						
 } else {						
     print("That airport is not in the airports dictionary.")						
 }						
-// prints "The name of the airport is Dublin International."						
+// prints "The name of the airport is Dublin International."			
+```			
 						
-서브스크립트 문법을 통해 딕셔너리에 할당된 값을 nil로 활당하여 key-value를 제거할 수 있음.						
+서브스크립트 문법을 통해 딕셔너리에 할당된 값을 nil로 활당하여 key-value를 제거할 수 있음.
+```swift						
 airports["APL"] = "Apple International"						
 // "Apple International" is not the real airport for APL, so delete it						
 airports["APL"] = nil						
-// APL has now been removed from the dictionary						
+// APL has now been removed from the dictionary					
+```	
 						
 removeValueForKey 메소드를 통해 key-value를 제거할 수 있음.						
-이 메소드는 값이 있으면 제거된 값을 없으면 nil을 반환						
+이 메소드는 값이 있으면 제거된 값을 없으면 nil을 반환					
+```swift	
 if let removedValue = airports.removeValueForKey("DUB") {						
     print("The removed airport's name is \(removedValue).")						
 } else {						
     print("The airports dictionary does not contain a value for DUB.")						
 }						
-// prints "The removed airport's name is Dublin International."						
+// prints "The removed airport's name is Dublin International."			
+```			
 						
 For-in 반복문을 사용.						
-각각의 딕셔너리에 아이템은 (key, value) 튜플로 반환되는데 일시적인 상수나 변수로 튜플의 멤버로 분리할 수 있음.						
+각각의 딕셔너리에 아이템은 (key, value) 튜플로 반환되는데 일시적인 상수나 변수로 튜플의 멤버로 분리할 수 있음.
+```swift						
 for (airportCode, airportName) in airports {						
     print("\(airportCode): \(airportName)")						
 }						
 // LHR: London Heathrow						
 // TYO: Tokyo						
-						
-딕셔너리의 keys와 values 속성을 가지고 접근한 키나 값의 컬렉션을 반복하여 검색할 수 있음.						
+```						
+딕셔너리의 keys와 values 속성을 가지고 접근한 키나 값의 컬렉션을 반복하여 검색할 수 있음.
+```swift						
 for airportCode in airports.keys {						
     print("Airport code: \(airportCode)")						
 }						
@@ -368,32 +408,40 @@ for airportName in airports.values {
 }						
 // Airport name: London Heathrow						
 // Airport name: Tokyo						
+```
 						
-딕셔너리의 키나 값을 keys나 values 속성을 가지고 새로운 배열 인스턴스를 초기화 가능						
+딕셔너리의 키나 값을 keys나 values 속성을 가지고 새로운 배열 인스턴스를 초기화 가능
+```swift						
 let airportCodes = [String](airports.keys)						
 // airportCodes is ["LHR", "TYO"]						
 						
 let airportNames = [String](airports.values)						
-// airportNames is ["London Heathrow", "Tokyo"]						
+// airportNames is ["London Heathrow", "Tokyo"]					
+```	
 						
-배열처럼 딕셔너리도 초기화 문법을 사용하여 특정 타입의 빈 딕셔너리를 만들 수 있음.						
+배열처럼 딕셔너리도 초기화 문법을 사용하여 특정 타입의 빈 딕셔너리를 만들 수 있음.
+```swift						
 var namesOfIntegers = [Int: String]()						
-// namesOfIntegers is an empty [Int: String] dictionary						
+// namesOfIntegers is an empty [Int: String] dictionary				
+```		
 						
 배열과 마찬가지로 이미 타입이 정해져 있는 딕셔너리를 빈 딕셔너리로 초기화하여도 타입은 그대로 유지.						
-빈 딕셔너리 표현법은 [:]로 사용.						
+빈 딕셔너리 표현법은 [:]로 사용.	
+```swift					
 namesOfIntegers[16] = "sixteen"						
 // namesOfIntegers now contains 1 key-value pair						
 namesOfIntegers = [:]						
-// namesOfIntegers is once again an empty dictionary of type [Int: String]						
+// namesOfIntegers is once again an empty dictionary of type [Int: String]	
+```					
 						
 						
-For 반복문(For Loops)						
-• for-in 반복문은 range, sequence, collection 또는 progression에 각 아이템 만큼 수행함.						
-• for 반복문은 특정 조건에 만족할 때까지 수행하며, 반복문이 끝날 때마다 counter가 증가함.						
+### For 반복문(For Loops)						
+* for-in 반복문은 range, sequence, collection 또는 progression에 각 아이템 만큼 수행함.						
+* for 반복문은 특정 조건에 만족할 때까지 수행하며, 반복문이 끝날 때마다 counter가 증가함.						
 						
-For-In						
-범위 수, 배열의 항목들, 문자열의 문자와 같이 여러 항목들의 집합을 반복할 때 for-in 반복문을 사용함.						
+#### For-In						
+범위 수, 배열의 항목들, 문자열의 문자와 같이 여러 항목들의 집합을 반복할 때 for-in 반복문을 사용함.
+```swift						
 for index in 1...5 {						
     print("\(index) times 5 is \(index * 5)")						
 }						
@@ -402,8 +450,10 @@ for index in 1...5 {
 // 3 times 5 is 15						
 // 4 times 5 is 20						
 // 5 times 5 is 25						
+```
 						
-범위 내에 있는 값이 필요 없다면 밑줄(_, underscore)를 사용하여 값을 무시할 수 있음.						
+범위 내에 있는 값이 필요 없다면 밑줄(_, underscore)를 사용하여 값을 무시할 수 있음.
+```swift						
 let base = 3						
 let power = 10						
 var answer = 1						
@@ -412,8 +462,10 @@ for _ in 1...power {
 }						
 print("\(base) to the power of \(power) is \(answer)")						
 // prints "3 to the power of 10 is 59049"						
+```
 						
-배열에 for-in 반복문을 사용함.						
+배열에 for-in 반복문을 사용함.	
+```swift					
 let names = ["Anna", "Alex", "Brian", "Jack"]						
 for name in names {						
     print("Hello, \(name)!")						
@@ -422,10 +474,12 @@ for name in names {
 // Hello, Alex!						
 // Hello, Brian!						
 // Hello, Jack!						
+```
 						
-딕셔너리에 Key-Value 쌍을 반복하여 접근할 수 있음. 						
-딕셔너리의 각 항목은 (key, value) 튜플로 반환됨.						
-딕셔너리가 반복되면 (key, value) 튜플을 각 멤버로 나누어 for-in 반복문 안에서 사용함.						
+딕셔너리에 Key-Value 쌍을 반복하여 접근할 수 있음.
+딕셔너리의 각 항목은 (key, value) 튜플로 반환됨.					
+딕셔너리가 반복되면 (key, value) 튜플을 각 멤버로 나누어 for-in 반복문 안에서 사용함.
+```swift						
 let numberOfLegs = ["spider": 8, "ant": 6, "cat": 4]						
 for (animalName, legCount) in numberOfLegs {						
     print("\(animalName)s have \(legCount) legs")						
@@ -433,23 +487,29 @@ for (animalName, legCount) in numberOfLegs {
 // spiders have 8 legs						
 // cats have 4 legs						
 // ants have 6 legs						
+```
 						
-For						
-Swift는 전통적인 C언어 형태의 반복문을 지원						
+#### For						
+Swift는 전통적인 C언어 형태의 반복문을 지원.
+```swift						
 for var index = 0; index < 3; ++index {						
     print("index is \(index)")						
 }						
 // index is 0						
 // index is 1						
 // index is 2						
+```
 						
-다음은 for 반복문의 일반적인 형태. 						
+다음은 for 반복문의 일반적인 형태. 
+```swift						
 for initialization; condition; increment {						
     statements						
 }						
+```
 						
-상수와 변수는 초기화 표현 안에 선언하면 for 반복문 범위 안에서만 유효함.						
-만약 index를 반복문이 끝난 후에 계속 사용하려면 반복문 전에 미리 선언해야 함.						
+상수와 변수는 초기화 표현 안에 선언하면 for 반복문 범위 안에서만 유효함.		
+만약 index를 반복문이 끝난 후에 계속 사용하려면 반복문 전에 미리 선언해야 함.	
+```swift					
 var index: Int						
 for index = 0; index < 3; ++index {						
     print("index is \(index)")						
@@ -458,7 +518,8 @@ for index = 0; index < 3; ++index {
 // index is 1						
 // index is 2						
 print("The loop statements were executed \(index) times")						
-// prints "The loop statements were executed 3 times"						
+// prints "The loop statements were executed 3 times"				
+```		
 						
 						
 ## While 반복문(While Loops)						
@@ -663,6 +724,5 @@ Swifth는 switch 문에서 기본적으로 각 경우 안에 있는 코드가 �
 
 
 #### 참고
-[잉여개발자 블로그](http://minsone.github.io/mac/ios/swift-the-basic-summary/) 
-
+[잉여개발자 블로그](http://minsone.github.io/mac/ios/swift-the-basic-summary/)   
 [iOS Developer Library - Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
