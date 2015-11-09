@@ -461,28 +461,32 @@ print("The loop statements were executed \(index) times")
 // prints "The loop statements were executed 3 times"						
 						
 						
-While 반복문(While Loops)						
+## While 반복문(While Loops)						
 While 반복문은 조건이 false가 될 때까지 수행함.						
-• while은 반복문 시작시 조건을 검사.						
-• do-while은 반복문이 끝난 후에 조건을 검사.						
+* while은 반복문 시작시 조건을 검사.						
+* do-while은 반복문이 끝난 후에 조건을 검사.						
 						
-While						
+### While						
 While문은 한개의 조건을 검사하고 시작함. 조건이 true라면 false가 될 때까지 반복하여 수행.						
-While 문의 일반적인 형태						
+While 문의 일반적인 형태	
+```swift					
 while condition {						
       statements						
-}						
+}
+```
 						
+```swift						
 var m = 1024						
 while m < 1000 {						
     m = m * 2						
 }						
 print(m)						
 // prints “1024”						
-						
-repeat-While						
-While 반복문과는 다른 do-while 반복문은 먼저 코드를 실행한 후 조건을 검사함.						
-만약 조건이 false라면 더이상 돌지 않음.						
+```						
+### repeat-While						
+While 반복문과는 다른 do-while 반복문은 먼저 코드를 실행한 후 조건을 검사함.	
+만약 조건이 false라면 더이상 돌지 않음.	
+```swift					
 Do {						
        statements						
 } while condition						
@@ -493,21 +497,22 @@ repeat {
 } while n < 1000						
 print(n)						
 // prints “2048”						
+```				
 						
-						
-조건문(Conditional Statements)						
+## 조건문(Conditional Statements)						
 조건에 따라 다른 코드를 실행할 때 유용함.						
-에러가 발생했을 때 특정 코드를 실행하거나 값이 너무 높거나 낮다면 메시지를 출력할 수 있음.						
-						
-If						
-단순한 형태의 if문은 한 개의 if문을 가지며 조건이 true일 때만 실행됨.						
+에러가 발생했을 때 특정 코드를 실행하거나 값이 너무 높거나 낮다면 메시지를 출력할 수 있음.												
+### If						
+단순한 형태의 if문은 한 개의 if문을 가지며 조건이 true일 때만 실행됨.			
+```swift			
 var temperatureInFahrenheit = 30						
 if temperatureInFahrenheit <= 32 {						
     print("It's very cold. Consider wearing a scarf.")						
 }						
-// prints "It's very cold. Consider wearing a scarf."						
-						
-여러 if문을 함께 쓰고자 할 때 else if문을 사용함.						
+// prints "It's very cold. Consider wearing a scarf."					
+```							
+여러 if문을 함께 쓰고자 할 때 else if문을 사용함.	
+```swift					
 temperatureInFahrenheit = 90						
 if temperatureInFahrenheit <= 32 {						
     print("It's very cold. Consider wearing a scarf.")						
@@ -516,12 +521,14 @@ if temperatureInFahrenheit <= 32 {
 } else {						
     print("It's not that cold. Wear a t-shirt.")						
 }						
-// prints "It's really warm. Don't forget to wear sunscreen."						
+// prints "It's really warm. Don't forget to wear sunscreen."			
+```			
 else 절은 옵션이므로 필요에 따라 작성할 수도 있고 안할 수도 있음.						
 						
-Switch						
-Switch 문은 값을 검토하여 그 값과 맞는 여러 패턴들과 비교함.						
-Switch 문은 if 문보다 여러 경우에 대해 대응할 수 있음.						
+### Switch						
+Switch 문은 값을 검토하여 그 값과 맞는 여러 패턴들과 비교함.				
+Switch 문은 if 문보다 여러 경우에 대해 대응할 수 있음.					
+```swift	
 switch some value to consider {						
     case value 1:						
     respond to value 1						
@@ -543,8 +550,9 @@ default:
     print("\(someCharacter) is not a vowel or a consonant")						
 }						
 // prints "e is a vowel"						
-						
-switch 문은 범위 안에 값이 포함하는지 여부를 확인할 수 있음.						
+```						
+switch 문은 범위 안에 값이 포함하는지 여부를 확인할 수 있음.				
+```swift
 let count = 3_000_000_000_000						
 let countedThings = "stars in the Milky Way"						
 var naturalCount: String						
@@ -565,10 +573,12 @@ default:
     naturalCount = "millions and millions of"						
 }						
 print("There are \(naturalCount) \(countedThings).")						
-// prints "There are millions and millions of stars in the Milky Way."						
+// prints "There are millions and millions of stars in the Milky Way."		
+```				
 						
-switch 문에서 여러 개의 값을 검증하기 위해선 튜플을 사용할 수 있음.						
-임의의 가능한 값만 일치하고자 한다면 밑줄(_) 식별자를 사용함.						
+switch 문에서 여러 개의 값을 검증하기 위해선 튜플을 사용할 수 있음.			
+임의의 가능한 값만 일치하고자 한다면 밑줄(_) 식별자를 사용함.			
+```swift
 let somePoint = (1, 1)						
 switch somePoint {						
 case (0, 0):						
@@ -583,8 +593,10 @@ default:
     print("(\(somePoint.0), \(somePoint.1)) is outside of the box")						
 }						
 // prints "(1, 1) is inside the box"						
+```
 						
-switch의 경우에서는 Where 절은 부가적인 조건을 확인하기 위해 사용함.						
+switch의 경우에서는 Where 절은 부가적인 조건을 확인하기 위해 사용함.		
+```swift
 let yetAnotherPoint = (1, -1)						
 switch yetAnotherPoint {						
 case let (x, y) where x == y:						
@@ -595,18 +607,19 @@ case let (x, y):
     print("(\(x), \(y)) is just some arbitrary point")						
 }						
 // prints "(1, -1) is on the line x == -y"						
+```						
 						
+## 제어 이동문(Control Transfer Statements)				
+제어 이동문은 특정 코드를 다른 곳으로 이동시키는 방법으로 코드 실행 순서를 변경함.
+* continue						
+* break						
+* fallthrough						
+* return						
 						
-제어 이동문(Control Transfer Statements)						
-제어 이동문은 특정 코드를 다른 곳으로 이동시키는 방법으로 코드 실행 순서를 변경함.						
-• continue						
-• break						
-• fallthrough						
-• return						
-						
-Continue						
+### Continue						
 Continue 문은 현재 작업을 멈추고 다음 반복문으로 넘어가서 시작하라고 명령함.						
-이는 루프에서 빠져나가지 않고 현재 반복 작업은 끝났음을 말함.						
+이는 루프에서 빠져나가지 않고 현재 반복 작업은 끝났음을 말함.			
+```swift			
 let puzzleInput = "great minds think alike"						
 var puzzleOutput = ""						
 for character in puzzleInput.characters {						
@@ -619,9 +632,10 @@ for character in puzzleInput.characters {
 }						
 print(puzzleOutput)						
 // prints "grtmndsthnklk"						
-						
-Break						
-break 문은 흐름 제어문을 즉시 끝냄. Break 문은 switch 문이나 반복문안에서 사용할 수 있음.						
+```						
+### Break						
+break 문은 흐름 제어문을 즉시 끝냄. Break 문은 switch 문이나 반복문안에서 사용할 수 있음.
+```swift
 let numberSymbol: Character = "三"  // Simplified Chinese for the number 3						
 var possibleIntegerValue: Int?						
 switch numberSymbol {						
@@ -642,11 +656,13 @@ if let integerValue = possibleIntegerValue {
     print("An integer value could not be found for \(numberSymbol).")						
 }						
 // prints "The integer value of 三 is 3."						
+```
 						
-Fallthrough						
+### Fallthrough						
 Swifth는 switch 문에서 기본적으로 각 경우 안에 있는 코드가 끝나면 다음 경우로 넘어가지 않음.
 
 
 #### 참고
-[잉여개발자 블로그](http://minsone.github.io/mac/ios/swift-the-basic-summary/)
+[잉여개발자 블로그](http://minsone.github.io/mac/ios/swift-the-basic-summary/) 
+
 [iOS Developer Library - Swift Programming Language](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309)
