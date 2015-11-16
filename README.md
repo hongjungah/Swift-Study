@@ -2,6 +2,7 @@
 2014년 6월 2일 애플이 세계개발자대회(WWDC 2014)에서 C언어 그리고 Objective-C 언어의 좋은 점들을 취합한 것을 기반으로 C언어 호환성에 대한 제약없이 iOS와 OS X 앱을 개발하기 위한 언어입니다.						
 애플 플랫폼 개발자들이 주로 이용해온 프로그래밍 언어인 "Object-C"를 대체할 것으로 예상된다.  
  
+
 ## Swift를 사용하면서 알아둘 사항						
 * 다른 언어들과 유사하게 주석은 한줄 // comment, 블록 /* comment */를 사용합니다
 * 명령문 마지막에 ;을 생략이 가능합니다. (JavaScript와 유사)
@@ -21,7 +22,7 @@
 
 ## 상수와 변수(Constants and Variables)						
 상수 값은 한번 설정된 후로는 변경할 수 없으나, 변수는 이후에도 변경될 수 있음.
-상수와 변수의 이름을 지정하기 위해서 유니코드를 포함한 어떤 문자든지 사용할 수 있음.						
+상수와 변수의 이름을 지정하기 위해서 유니코드를 포함한 어떤 문자든지 사용할 수 있음.
 ```swift
 상수의 keyword - let
 변수의 keyword - var
@@ -770,12 +771,166 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
     }
     return (currentMin, currentMax)
 }
-
 let bounds = minMax([8, -6, 2, 109, 3, 71])
 print("min is \(bounds.min) and max is \(bounds.max)")
 // prints "min is -6 and max is 10
 ```
 
+### 옵셔널 튜플 반환 타입(Optional Tuple Return Types) 
+옵셔널타입의 값을 리턴할 수도 있음.
+만약, 아래의 함수의 파라미터인 array에 빈배열이 들어왔다면, array[0]을 할 때 런타임에러가 발생할 것이다.
+이런 상황을 다루기 위해서 if문을 통해 배열이 비었을 경우 값이 없음을 nil을 리턴해주면 된다.
+리턴타입을 옵셔널로 선언해주어야만 nil을 리턴할 수가 있다.
+```swift
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+```
+그리고 다음과 같이 배열을 minMax의 인자로 던져주면, 옵셔널 튜플값이 리턴되는데, if let(옵셔널바인딩) 문장을 사용해서, nil 체크를 해주면서 bounds에 minMax의 언랩핑된 값으로 초기화시켜주고 있다.
+```swift
+if let bounds = minMax([ 8, -6, 2, 109, 3, 71 ]) {
+    print("min is \(bounds.min) and max is \(bounds.max)")
+}
+// min is -6 and max is 109 출력 
+```
+ 
+### 함수 인자 이름(Function Parameter Names)
+```swift
+func someFunction(parameterName: Int) {
+    // function body goes here, and can use parameterName
+    // to refer to the argument value for that parameter
+}
+```
+이들 인자 이름은 함수 안에서만 사용 가능하며 함수 호출할 때에는 사용할 수 없음.
+이러한 종류의 인자 이름은 지역 인자 이름으로 불리는데 함수 내에서만 오직 사용 가능하기 때문임.
+
+#### 외부 인자 이름(External Parameter Names)
+함수 사용자에게 함수를 호출할 때 인자에 이름을 지어주길 원하면 각 인자에게 외부 인자 이름을 지역 인자 이름에 붙이도록 정의함.
+지역 인자 이름 앞에 한칸 띄우고 외부 인자 이름을 작성함.
+```swift
+func someFunction(externalParameterName localParameterName: Int) {
+    // function body goes here, and can use localParameterName
+    // to refer to the argument value for that parameter
+}
+```
+
+문자열 값의 목적을 뚜렷하게 하기 위해 외부 인자 이름을 각 함수 인자에 정의함.
+```swift
+func join(string s1: String, toString s2: String, withJoiner joiner: String) -> String {
+        return s1 + joiner + s2
+}
+join(string: "hello", toString: "world", withJoiner: ", ")
+// returns "hello, world" 
+```
+
+#### 외부 인자 이름 생략하기(Omitting External Parameter Names)
+첫번째 외부 인자 이름은 자동으로 생략이 됨. 두번째 인자의 외부 인자 이름을 사용하고 싶지 않다면 underscore(_)를 사용하면 됨.
+```swift
+func someFunction(firstParameterName: Int, _ secondParameterName: Int) {
+    // function body goes here
+    // firstParameterName and secondParameterName refer to
+    // the argument values for the first and second parameters
+}
+someFunction(1, 2)
+```
+
+#### 인자 기본 값(Default Parameter Values)
+함수의 정의에 부분으로 인자에 기본값을 정의할 수 있음. 기본 값은 정의되면 함수 호출될 때 인자를 생략할 수 있음.
+ >  기본 값을 가지는 인자는 함수 인자 목록의 마지막에 위치함. 이는 기본 값을 가지지 않는 인자가 같은 순서를 사용함을 보장하며 매 경우 같은 함수가 호출되도록 명확하게 함.
+ 
+joiner 인자가 기본 값을 가지도록 하는 join 함수의 예제. 
+```swift
+func join(string s1: String, toString s2: String,
+    withJoiner joiner: String = " ") -> String {
+        return s1 + joiner + s2
+}
+```
+joiner에 값이 있는 경우에 다음과 같이 함수를 호출함.
+```swift
+join(string: "hello", toString: "world", withJoiner: "-")
+// returns "hello-world"
+```
+만약 joiner에 값이 없는 경우 기본 값이 대신 사용하도록 다음과 같이 함수를 호출함.
+```swift
+join(string: "hello", toString: "world")
+// returns "hello world"
+```
+
+#### 가변 인자(Variadic Parameters)
+가변 인자는 한번에 같은 타입의 값을 여러개 받을 수 있음. 가변 인자로 받은 인자값들은 함수 내부에서 배열로써 다루어 짐.
+```swift
+func arithmeticMean(numbers: Double...) -> Double {
+    var total: Double = 0
+    for number in numbers {
+        total += number
+    }
+    return total / Double(numbers.count)
+}
+arithmeticMean(1, 2, 3, 4, 5)
+// returns 3.0, which is the arithmetic mean of these five numbers
+arithmeticMean(3, 8.25, 18.75)
+// returns 10.0, which is the arithmetic mean of these three numbers
+```
+> 함수는 대부분 한 개의 가변 인자를 가지며 이는 인자 목록 마지막에 항상 위치를 하고, 함수 호출 시 여러 인자들과의 모호성을 피하기 위함.
+하나 이상의 기본 값을 가지는 인자와 가변 인자를 가지고 있다면, 기본 값을 가지는 인자 뒤에 가변 인자 순으로 위치해야 함.
+
+#### 상수 인자와 변수 인자(Constant and Variable Parameters)
+함수 인자는 기본적으로 상수. 함수 내에서 함수 인자 값을 변경하려고 한다면 컴파일 타임 에러가 발생. 이 의미는 실수로 인자의 값을 변경할 수 없음.
+새로운 변수를 정의하지 않고 대신 변수 인자를 하나 이상 지정하여 함수 내부에서 사용할 수 있음. 
+변수 인자를 정의하려면 인자의 이름 앞에 `var`키워드를 접두어로 사용함.
+```swift
+func alignRight(var string: String, count: Int, pad: Character) -> String {
+    let amountToPad = count - countElements(string)
+    for _ in 1...amountToPad {
+        string = pad + string
+    }
+    return string
+}
+let originalString = "hello"
+let paddedString = alignRight(originalString, 10, "-")
+// paddedString is equal to "-----hello"
+// originalString is still equal to "hello"
+```
+
+#### 입출력 인자(In-Out Parameters)
+앞에서 설명한 가변 인자는 함수 내에서만 변경 가능함. 만약 인자 값이 변경된 후에도 값이 유지되길 원한다면 인자를 입출력 인자로 정의해야 함.
+
+입출력 인자는 `inout` 키워드가 인자 앞에 위치하도록 정의함. 입출력 인자는 함수로 넘겨진 값을 가지며, 함수에 의해 수정되고 원래 값을 대체하여 밖으로 넘겨짐. 
+
+입출력 인자에 변수만 넘길 수 있으며, 상수나 값 리터럴 값은 넘길 수 없는데 이는 값을 변경할 수 없기 때문임. 입출력 인자를 넘길 때 앤드 기호(&)를 변수 앞에 붙여서 함수에 의해 수정될 수 있음을 나타냄.
+
+입출력 인자는 기본 값을 가질 수 없으며, 가변 인자도 inout으로 표시할 수 없고 var이나 let도 표시할 수 없음.
+```swift
+func swapTwoInts(inout a: Int, inout _ b: Int) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+```
+swapTwoInts 함수는 a와 b의 값을 바꿈. 바꾸는 작업
+var someInt = 3
+var anotherInt = 107
+swapTwoInts(&someInt, &anotherInt)
+print("someInt is now \(someInt), and anotherInt is now \(anotherInt)")
+// prints "someInt is now 107, and anotherInt is now 3"
+
+
+
+
+
+ 
+ 
+ 
   
 ---
 ### 참고 
